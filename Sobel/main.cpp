@@ -24,9 +24,6 @@ int main(int argc, char** argv)
 		return -1;
 	}
 
-	double dWidth = cap.get(CAP_PROP_FRAME_WIDTH);
-	double dHeight = cap.get(CAP_PROP_FRAME_HEIGHT);
-
 	string windowName = "Sobel Video Filter";
 	namedWindow(windowName); // Create a window
 	EFilter_Sobel status = EFilter_Sobel::rainbow;
@@ -51,7 +48,6 @@ int main(int argc, char** argv)
 		Mat image = applySobel(frame, status);
 		
 		imshow(windowName, image);
-
 	}
 
 	waitKey(0); // Wait for any keystroke in the window
