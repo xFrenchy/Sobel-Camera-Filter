@@ -1,4 +1,5 @@
 #pragma once
+#ifndef FUNCTIONS_H
 
 #include <opencv2/opencv.hpp>
 
@@ -17,19 +18,27 @@ enum class EFilter_Sobel
 {
 	rainbow,
 	proper,
+	color,
+	rotate_all_colors,
 	green,
 	red,
 	gold,
 	purple,
-	rotate_all_colors,
 	no_change,
 };
 
-using namespace cv;
+struct RGB {
+	int r, g, b;
+	RGB() { r = 0; g = 0; b = 0; }
+	RGB(int _r, int _g, int _b) { r = _r; g = _g; b = _b; }
+};
 
-Mat rainbowSobel(Mat);
-Mat ProperSobel(Mat);
-Mat colorSobel(Mat, EFilter_Sobel);
-Mat applySobel(Mat, EFilter_Sobel);
+cv::Mat rainbowSobel(cv::Mat);
+cv::Mat ProperSobel(cv::Mat);
+cv::Mat colorSobel(cv::Mat, RGB);
+cv::Mat applySobel(cv::Mat, EFilter_Sobel);
 
 EFilter_Sobel userInput();
+void incrementGlobalColorIndex();
+
+#endif // !FUNCTIONS_H
