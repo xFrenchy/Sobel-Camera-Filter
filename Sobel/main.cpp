@@ -7,7 +7,6 @@
 #include <opencv2/opencv.hpp>
 
 #include <iostream>
-#include <string>
 
 #include "functions.h"
 
@@ -29,11 +28,6 @@ int main(int argc, char** argv)
 	EFilter_Sobel status = EFilter_Sobel::rainbow;
 
 	while (true) {
-		EFilter_Sobel newStatus = userInput();
-		if (newStatus != EFilter_Sobel::no_change) {
-			status = newStatus;
-		}
-
 		Mat frame;
 		bool bSuccess = cap.read(frame); // read a new frame from video
 
@@ -43,6 +37,11 @@ int main(int argc, char** argv)
 			cout << "Video camera is disconnected\n";
 			cin.get();
 			break;
+		}
+
+		EFilter_Sobel newStatus = userInput();
+		if (newStatus != EFilter_Sobel::no_change) {
+			status = newStatus;
 		}
 
 		Mat image = applySobel(frame, status);
